@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Young+Serif&display=swap');
+
+:root {
+    /* colors */
+    --white: hsl(0, 0%, 100%);
+    --stone-100: hsl(30, 54%, 90%);
+    --stone-150: hsl(30, 18%, 87%);
+    --stone-600: hsl(30, 10%, 34%);
+    --stone-900: hsl(24, 5%, 18%);
+    --brown-800: hsl(14, 45%, 36%);
+    --rose-50: hsl(330, 100%, 98%);
+    --rose-800: hsl(332, 51%, 32%);
+}
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: var(--white);
+    font-family: "Outfit", sans-serif;
+    color: var(--stone-600);
+    line-height: 20px;
+    text-align: left;
+}
+.recipe-title, .recipe-description, main > * {
+    background-color: var(--white);
+    margin: 1.5rem 0;
+}
+.recipe-title, .recipe-description, main {
+    padding: 0 2rem;
+}
+img {
+    width: 100%;
+    height: auto;
+}
+h1 {
+    font-size: 2rem;
+    line-height: 30px;
+    color: var(--stone-900);
+}
+h2 {
+    color: var(--brown-800);
+    font-size: 1.74rem;
+    margin-bottom: 1.5rem;
+}
+h1, h2 {
+    font-family: "Young Serif", serif;
+}
+.prep-time {
+    background-color: var(--rose-50);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+.prep-time .prep-time-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--rose-800);
+    margin-bottom: .5rem;
+}
+.prep-time ul li {
+    font-size: .875rem;
+}
+ul > li {
+    display: flex;
+    align-items: center;
+    margin-top: .5rem;
+    gap: 1.5rem;
+}
+ul > li::before {
+    content: "•";
+    font-size: 1.5rem;
+    color: var(--brown-800);
+}
+.instructions {
+    counter-reset: section;
+}
+.instructions p {
+    position: relative;
+    margin-left: 1.75rem;
+    margin-bottom: 1rem;
+}
+.instructions p::before {
+    counter-increment: section;
+    content: counter(section) ". ";
+    position: absolute;
+    left: -1.5rem;
+    color: var(--brown-800);
+    font-weight: bold;
+}
+tr {
+    border-bottom: 1px solid var(--stone-600)
+}
+table {
+    width: 100%;
+    margin-top: 1.5rem;
+}
