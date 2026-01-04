@@ -37,7 +37,7 @@
     --width-card: 40rem;
 }
 body {
-    background-color: var(--stone-150);
+    background-color: var(--stone-100);
     font-family: var(--font-family-body);
     color: var(--stone-600);
     line-height: var(--line-height-sm);
