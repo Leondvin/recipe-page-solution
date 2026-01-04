@@ -10,87 +10,145 @@
     --brown-800: hsl(14, 45%, 36%);
     --rose-50: hsl(330, 100%, 98%);
     --rose-800: hsl(332, 51%, 32%);
-}
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
+    /* typography */
+    --font-family-body: "Outfit", sans-serif;
+    --font-family-headings: "Young Serif", serif;
+    --font-size-sm: 1.125rem;
+    --font-size-md: 1.5rem;
+    --font-size-l: 1.74rem;
+    --font-size-xl: 2rem;
+    --font-weight-600: 600;
+    --font-weight-700: 700;
+    --line-height-sm: 1.5rem;
+    --line-height-md: 1.875rem;
+    /* sizing */
+    --margin-sm: .5rem;
+    --margin-md: 1.5rem;
+    --margin-l: 1.75rem;
+    --margin-xl: 2rem;
+    --margin-xxl: 6rem;
+    --padding-sm: .75rem;
+    --padding-md: 1.5rem;
+    --padding-l: 2rem;
+    --box-shadow-color: rgba(0, 0, 0, 0.2);
+    --box-shadow: 0 .5rem 2rem var(--box-shadow-color);
+    --border-radius-img-container: 1rem;
+    --border-radius-card: 2rem;
+    --width-card: 40rem;
 }
 body {
-    background-color: var(--white);
-    font-family: "Outfit", sans-serif;
+    background-color: var(--stone-150);
+    font-family: var(--font-family-body);
     color: var(--stone-600);
-    line-height: 20px;
-    text-align: left;
+    line-height: var(--line-height-sm);
+    text-align: left;  /* may not be needed */
 }
+.card {
+    background-color: var(--white);
+}
+/* include the child combinator, >, where main and * are the selectors */
 .recipe-title, .recipe-description, main > * {
     background-color: var(--white);
-    margin: 1.5rem 0;
+    margin-top: var(--margin-md);
 }
+/* include the selector list, a comma-separated list of selectors */
 .recipe-title, .recipe-description, main {
-    padding: 0 2rem;
+    padding: 0 var(--padding-l);
 }
+main {
+    padding-bottom: var(--padding-l);
+}
+/* include making the img element a block to get rid of the bottom gap */
 img {
     width: 100%;
     height: auto;
+    display: block;  /* to remove the gap that accommodates text descenders */
 }
 h1 {
-    font-size: 2rem;
-    line-height: 30px;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-md);
     color: var(--stone-900);
 }
 h2 {
+    font-size: var(--font-size-l);
     color: var(--brown-800);
-    font-size: 1.74rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--margin-md);
 }
 h1, h2 {
-    font-family: "Young Serif", serif;
+    font-family: var(--font-family-headings);
 }
 .prep-time {
     background-color: var(--rose-50);
-    padding: 1.5rem;
+    padding: var(--padding-md);
     border-radius: 1rem;
 }
 .prep-time .prep-time-title {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-600);
     color: var(--rose-800);
-    margin-bottom: .5rem;
 }
-.prep-time ul li {
-    font-size: .875rem;
-}
-ul > li {
+/* include using flex containers, (:):before pseudo-elements as flex-items */
+.prep-time .prep-info, .ingredients li {
+    margin-top: var(--margin-sm);
     display: flex;
     align-items: center;
-    margin-top: .5rem;
     gap: 1.5rem;
 }
-ul > li::before {
+.prep-time .prep-info::before, .ingredients li::before {
     content: "•";
-    font-size: 1.5rem;
     color: var(--brown-800);
+    font-size: var(--font-size-md);
 }
+hr {
+    border: none;
+    border-bottom: 1px solid var(--stone-150);
+}
+/* counter-set is a new feature, and might not work on old browsers */
+/* therefore, counter-reset is recommended to create a counter */
 .instructions {
     counter-reset: section;
+    /* counter-set: section;  setting the counter, section, to 0 */
+    /* counter-set: section 9;  setting the counter, section, to 9 */
 }
 .instructions p {
     position: relative;
-    margin-left: 1.75rem;
-    margin-bottom: 1rem;
+    margin-left: var(--margin-l);
+    margin-bottom: var(--margin-sm);
 }
 .instructions p::before {
-    counter-increment: section;
+    counter-increment: section;  /* increments the counter by 1 */
     content: counter(section) ". ";
     position: absolute;
     left: -1.5rem;
     color: var(--brown-800);
-    font-weight: bold;
+    font-weight: var(--font-weight-700);
 }
-tr {
-    border-bottom: 1px solid var(--stone-600)
+.nutrition-data {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--stone-150);
+    padding: var(--padding-sm) var(--padding-l);
 }
-table {
-    width: 100%;
-    margin-top: 1.5rem;
+.nutrition-data > * {
+    flex: 1;
+}
+.nutrition-value {
+    color: var(--rose-800);
+}
+@media only screen and (min-width: 768px) {
+    .img-container {
+        margin: var(--margin-xl);
+        border-radius: var(--border-radius-img-container);
+        overflow: hidden;
+    }
+    .card {
+        width: var(--width-card);
+        border-radius: var(--border-radius-card);
+        margin: var(--margin-xxl) 0;
+        box-shadow: var(--box-shadow);
+    }
+    .wrapper-desktop {
+        display: flex;
+        justify-content: center;
+    }
 }
